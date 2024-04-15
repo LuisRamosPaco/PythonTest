@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transferencias Entre Cuentas</title>
+</head>
+<body>
+    <div>
+    <h1>Cuenta Origen</h1>
+    <form method="post">
+        {{ form.csrf_token }}
+        <br>
+        <label>Cuenta Origen:</label>
+        <select name="cuenta_retiro">
+                {% for cuenta_retiro in nro_cuentas %}
+                    <option value="{{cuenta_retiro}}">{{cuenta_retiro}}</option>
+                {% endfor %}
+        </select>
+        <br>
+        <h1>Cuenta Destino</h1>
+        <br>
+        <label>Cuenta Destino:</label>
+        <select name="cuenta_deposito">
+            {% for cuenta_deposito in nro_cuentas %}
+                <option value="{{cuenta_deposito}}">{{cuenta_deposito}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        {{ form.monto.label }} {{ form.monto(size=10) }}
+            {% for err in form.monto.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %} <br>
+        <br>
+        {{ form.transferir }}
+        <button type="reset" name="cancel" value="cancel">Cancelar</button>
+    </form>
+    </div>
+       <footer>
+        <br>
+        <a href="{{ url_for('home') }}">Pagina Inicial</a>
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abono & Retiro</title>
+</head>
+<body>
+    <h1>CUENTA</h1>
+    <form method="post">
+        {{ form.csrf_token }}
+        <br>
+            <label>Cuenta</label>
+            <select name="cuenta" width="300px">
+                {% for cuenta in nro_cuentas %}
+                    <option value="{{cuenta}}">{{cuenta}}</option>
+                {% endfor %}
+            </select>
+        <br>
+        {{ form.monto.label }} {{ form.monto(size=10) }}
+            {% for err in form.monto.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %} <br>
+        {{ form.deposito }}
+        {{ form.retiro }}
+    </form>
+    <footer>
+        <br>
+        <a href="{{ url_for('home') }}">Pagina Inicial</a>
+    </footer>
+
+</body>
+</html>

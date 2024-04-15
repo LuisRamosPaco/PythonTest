@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Account</title>
+</head>
+<body>
+    <h1>Create a Account</h1>
+    <form method="post">
+        {{ form.csrf_token }}
+                <br>
+        <label>Tipo (aho/cte):</label>
+            <select name="tipo">
+                <option>AHO</option>
+                <option>CTE</option>
+            </select>
+        <br>
+        <label>Moneda:</label>
+            <select name="moneda">
+                <option>Bs</option>
+                <option>Sus</option>
+            </select>
+        <p>
+            {{ form.nombre.label}} {{form.nombre(size=50)}}
+            {% for err in form.nombre.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %}
+        </p>
+            {{ form.crear_cuenta }}
+    </form>
+    <a href="{{ url_for('home') }}">Pagina Inicial</a>
+</body>
+</html>
